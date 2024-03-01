@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+            git 'https://github.com/Katelkar/Myjenkins.git'
+            sh './mvnw compile'
+                echo 'MavenBuild Successful'
+            }
+        }
+        stage('Test') {
+            steps {
+            sh './mvnw test'
+                echo 'TestCases Executed Successfully'
+            }
+        }
+        stage('Package') {
+            steps {
+            sh './mvnw Package'
+                echo 'TestCases Executed Successfully'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Application Deployed Successfully'
+            }
+        }
+    }
+}
